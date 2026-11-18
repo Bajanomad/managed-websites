@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>411</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html, body { height:100%; background:#030303; overflow:hidden; }
+  body { font-family:"Space Grotesk", system-ui, sans-serif; color:#e8e2d4; }
+  #rain { position:fixed; inset:0; z-index:0; }
+  #vignette { position:fixed; inset:0; z-index:1; pointer-events:none;
+    background:radial-gradient(ellipse at center, transparent 46%, rgba(0,0,0,.55) 100%); }
+
+  /* ---------- center master ---------- */
+  #center { position:fixed; left:50%; top:50%; transform:translate(-50%,-54%); z-index:3;
+    text-align:center; pointer-events:none; }
+  #masterRing { width:158px; height:158px; margin:0 auto; border-radius:50%;
+    border:1px solid rgba(255,106,0,.85);
+    box-shadow:0 0 26px rgba(255,106,0,.45), inset 0 0 26px rgba(255,106,0,.22);
+    display:flex; align-items:center; justify-content:center;
+    animation:breathe 5.2s ease-in-out infinite; background:rgba(5,5,5,.5); }
+  @keyframes breathe { 0%,100%{ box-shadow:0 0 18px rgba(255,106,0,.32), inset 0 0 18px rgba(255,106,0,.16);} 50%{ box-shadow:0 0 40px rgba(255,106,0,.6), inset 0 0 34px rgba(255,106,0,.3);} }
+  #masterRing svg { width:96px; height:96px; }
+  #brandNum { margin-top:16px; font-family:"Orbitron",sans-serif; font-weight:800; font-size:30px;
+    letter-spacing:.42em; text-indent:.42em; color:#ff6a00; text-shadow:0 0 14px rgba(255,106,0,.65); }
+  #brandWord { margin-top:2px; font-family:"Orbitron",sans-serif; font-weight:600; font-size:12px;
+    letter-spacing:.9em; text-indent:.9em; color:rgba(57,255,20,.55); }
+
+  /* ---------- orbiting doors ---------- */
+  .door { position:fixed; z-index:4; width:66px; height:66px; margin:-33px 0 0 -33px;
+    border-radius:50%; border:1px solid rgba(255,106,0,.75); cursor:pointer;
+    background:rgba(8,8,8,.62); backdrop-filter:blur(2px);
+    box-shadow:0 0 16px rgba(255,106,0,.35), inset 0 0 14px rgba(255,106,0,.14);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; will-change:transform; }
+  .door svg { width:38px; height:38px; pointer-events:none; }
+  .door:active { box-shadow:0 0 30px rgba(255,106,0,.75), inset 0 0 20px rgba(255,106,0,.3); }
+
+  /* ---------- easter eggs ---------- */
+  .egg { position:fixed; z-index:5; width:30px; height:30px; border-radius:50%;
+    border:1px solid rgba(255,106,0,.5); display:flex; align-items:center; justify-content:center;
+    background:rgba(5,5,5,.5); pointer-events:none; }
+  .egg svg { width:17px; height:17px; }
+  #eggTL { left:14px; top:14px; animation:eggA 7s ease-in-out infinite; }
+  #eggBR { right:14px; bottom:14px; animation:eggB 7s ease-in-out infinite; }
+  @keyframes eggA { 0%,100%{opacity:.12;} 50%{opacity:.75;} }
+  @keyframes eggB { 0%,100%{opacity:.75;} 50%{opacity:.12;} }
+
+  /* ---------- door panel ---------- */
+  #panelWrap { position:fixed; inset:0; z-index:10; display:none; align-items:center; justify-content:center;
+    background:rgba(0,0,0,.55); }
+  #panelWrap.open { display:flex; }
+  #panel { width:min(88vw,380px); background:rgba(6,6,6,.94); border:1px solid rgba(255,106,0,.8);
+    box-shadow:0 0 44px rgba(255,106,0,.35), inset 0 0 30px rgba(255,106,0,.07);
+    padding:30px 26px 26px; text-align:center; position:relative; }
+  #panelGlyph svg { width:84px; height:84px; }
+  #panelWord { font-family:"Orbitron",sans-serif; font-weight:800; font-size:27px; letter-spacing:.3em;
+    text-indent:.3em; color:#ff6a00; text-shadow:0 0 16px rgba(255,106,0,.7); margin:14px 0 4px;
+    animation:flick 3.4s linear infinite; }
+  @keyframes flick { 0%,6.5%,8%,100%{opacity:1;} 7%{opacity:.25;} 41%,42.5%{opacity:1;} 41.7%{opacity:.4;} 78%{opacity:1;} 78.6%{opacity:.55;} }
+  #panelMean { color:#cfc8b8; font-size:15.5px; line-height:1.5; margin:10px 0 18px; }
+  #panelLink { display:none; font-family:"Orbitron",sans-serif; font-size:12.5px; font-weight:600;
+    letter-spacing:.24em; color:#030303; background:#ff6a00; padding:12px 18px; text-decoration:none;
+    box-shadow:0 0 18px rgba(255,106,0,.5); }
+  #panelClose { position:absolute; top:8px; right:12px; background:none; border:none; color:rgba(255,106,0,.8);
+    font-size:22px; cursor:pointer; font-family:"Space Grotesk",sans-serif; }
+  #hint { position:fixed; left:0; right:0; bottom:calc(16px + env(safe-area-inset-bottom)); z-index:3;
+    text-align:center; font-size:11px; letter-spacing:.34em; text-indent:.34em;
+    color:rgba(232,226,212,.34); font-family:"Orbitron",sans-serif; pointer-events:none; }
+</style>
+</head>
+<body>
+<canvas id="rain"></canvas>
+<div id="vignette"></div>
+
+<div id="center">
+  <div id="masterRing"></div>
+  <div id="brandNum">411</div>
+  <div id="brandWord">MATRIX</div>
+</div>
+
+<div class="egg" id="eggTL"></div>
+<div class="egg" id="eggBR"></div>
+
+<div id="panelWrap">
+  <div id="panel">
+    <button id="panelClose" aria-label="Close">&times;</button>
+    <div id="panelGlyph"></div>
+    <div id="panelWord"></div>
+    <p id="panelMean"></p>
+    <a id="panelLink" href="#" target="_blank" rel="noopener">ENTER</a>
+  </div>
+</div>
+
+<div id="hint">THRAZZ&nbsp;&middot;&nbsp;VORRAK&nbsp;&middot;&nbsp;ESHKAEL</div>
+
+<script>
+"use strict";
+/* ============ THE ALPHABET (placeholder set, Motoko generated) ============
+   David's hand drawn glyphs replace these paths one for one when they land. */
+const GLYPHS = [
+  "M32 6 V58 M14 20 L32 12 L50 20 M18 44 L32 36 L46 44",
+  "M32 6 V16 M32 48 V58 M6 32 H16 M48 32 H58",
+  "M12 52 L28 12 L36 32 L52 8",
+  "M10 10 H40 V40 H10 Z M22 22 H54 V54 H22 Z",
+  "M8 32 Q32 8 56 32 Q32 56 8 32 Z",
+  "M14 6 V22 Q14 31 32 31 Q50 31 50 22 V6 M32 31 V58",
+  "M12 12 L52 52 M52 12 L12 52 M32 4 V13 M32 51 V60",
+  "M42 6 A27 27 0 1 0 42 58 A34 34 0 0 1 42 6 M54 20 V44",
+  "M32 6 L56 32 L32 58 L8 32 Z M32 20 V44 M20 32 H44",
+  "M8 52 H24 V38 H38 V24 H52",
+  "M16 8 L32 24 L48 8 M16 26 L32 42 L48 26 M32 42 V58",
+  "M32 10 L56 52 H8 Z M32 27 V40"
+];
+const CIRCLE = '<circle cx="32" cy="32" r="5.5" fill="#ff6a00" stroke="none"/>';
+const MASTER = "M32 4 L58 32 L32 60 L6 32 Z M32 13 V21 M32 43 V51";
+function glyphSVG(i, color, extra) {
+  return '<svg viewBox="0 0 64 64" fill="none" stroke="' + color + '" stroke-width="4.4" stroke-linecap="square">' +
+    '<path d="' + GLYPHS[i] + '"/>' + (extra || "") + "</svg>";
+}
+document.getElementById("masterRing").innerHTML =
+  '<svg viewBox="0 0 64 64" fill="none" stroke="#ff6a00" stroke-width="3.6" stroke-linecap="square">' +
+  '<path d="' + MASTER + '"/><circle cx="32" cy="32" r="7.5"/></svg>';
+document.getElementById("eggTL").innerHTML = glyphSVG(1, "rgba(255,106,0,.85)");
+document.getElementById("eggBR").innerHTML = glyphSVG(6, "rgba(255,106,0,.85)");
+
+/* ============ DOORS ============ */
+const OLD = "https://411matrix.vercel.app";
+const DOORS = [
+  { g:3,  word:"VORRAK",  mean:"The calendar. What is on, what is coming, what you promised.", url:"https://calendar.google.com", cta:"ENTER" },
+  { g:2,  word:"ESHKAEL", mean:"Baja weather. Wind, water, and the storms that decide the week.", url:OLD, cta:"ENTER VIA THE CURRENT SITE" },
+  { g:9,  word:"ZUNTHAR", mean:"Local news. Pescadero, Todos Santos, Cerritos, the corridor.", url:OLD, cta:"ENTER VIA THE CURRENT SITE" },
+  { g:10, word:"OMVEK",   mean:"The market board. What things cost and where they are moving.", url:OLD, cta:"ENTER VIA THE CURRENT SITE" },
+  { g:6,  word:"THRAZZ",  mean:"The arcade. Games live behind this door.", url:OLD, cta:"ENTER VIA THE CURRENT SITE" },
+  { g:4,  word:"KORVANE", mean:"Section 13. Clandestino Cosmico. The future is under attack.", url:"https://www.facebook.com/profile.php?id=61595657647422", cta:"OPEN THE PAGE", extra:CIRCLE },
+  { g:0,  word:"ULTHIX",  mean:"House sitting. Book Dave. The original door, from the first site.", url:"", cta:"" },
+  { g:5,  word:"MREZZA",  mean:"What people said. The words of the ones who trusted him with their homes.", url:"", cta:"" }
+];
+
+/* ============ RAIN ============ */
+const canvas = document.getElementById("rain"), ctx = canvas.getContext("2d");
+let W, H, cols = [];
+const CELL = 34;
+function makeSprite(i, color, alpha) {
+  const c = document.createElement("canvas"); c.width = c.height = 44;
+  const x = c.getContext("2d");
+  x.globalAlpha = alpha; x.strokeStyle = color; x.lineWidth = 3.4; x.lineCap = "square";
+  x.beginPath();
+  const p = new Path2D(GLYPHS[i]);
+  x.save(); x.scale(44 / 64, 44 / 64); x.stroke(p); x.restore();
+  return c;
+}
+const spritesGreen = GLYPHS.map(i => makeSprite(GLYPHS.indexOf(i), "#39ff14", 0.34));
+const spritesOrange = GLYPHS.map((_, i) => makeSprite(i, "#ff6a00", 0.5));
+function sizeRain() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  W = window.innerWidth; H = window.innerHeight;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W + "px"; canvas.style.height = H + "px";
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const n = Math.ceil(W / CELL);
+  cols = [];
+  for (let i = 0; i < n; i++) cols.push({ x: i * CELL + 4, y: Math.random() * -H, speed: 0.35 + Math.random() * 0.75, glyphs: [] });
+  ctx.fillStyle = "#030303"; ctx.fillRect(0, 0, W, H);
+}
+sizeRain(); window.addEventListener("resize", sizeRain);
+let lastRain = 0;
+function rain(t) {
+  requestAnimationFrame(rain);
+  if (t - lastRain < 50) return; /* slow rain, ~20fps */
+  lastRain = t;
+  ctx.fillStyle = "rgba(3,3,3,0.075)"; ctx.fillRect(0, 0, W, H);
+  for (const col of cols) {
+    col.y += col.speed * CELL * 0.42;
+    if (col.y > H + CELL) { col.y = -CELL * (2 + Math.random() * 8); col.speed = 0.35 + Math.random() * 0.75; }
+    const gi = (Math.random() * GLYPHS.length) | 0;
+    const spr = Math.random() < 0.16 ? spritesOrange[gi] : spritesGreen[gi];
+    ctx.drawImage(spr, col.x, col.y, 26, 26);
+    if (Math.random() < 0.5) { /* fading tail cell */
+      const gi2 = (Math.random() * GLYPHS.length) | 0;
+      ctx.globalAlpha = 0.4; ctx.drawImage(spritesGreen[gi2], col.x, col.y - CELL, 26, 26); ctx.globalAlpha = 1;
+    }
+  }
+}
+requestAnimationFrame(rain);
+
+/* ============ ORBIT ============ */
+const doorEls = DOORS.map((d, i) => {
+  const el = document.createElement("div");
+  el.className = "door";
+  el.innerHTML = glyphSVG(d.g, "#ff6a00", d.extra || "");
+  el.setAttribute("role", "button");
+  el.addEventListener("click", () => openPanel(i));
+  document.body.appendChild(el);
+  return el;
+});
+let orbitAngle = 0, orbiting = false, paused = false;
+const INTRO_MS = 1500;
+function placeDoors() {
+  const cx = window.innerWidth / 2, cy = window.innerHeight / 2 - 14;
+  const R = Math.max(118, Math.min(window.innerWidth, window.innerHeight) * 0.36);
+  DOORS.forEach((d, i) => {
+    const a = orbitAngle + (i / DOORS.length) * Math.PI * 2 - Math.PI / 2;
+    const x = cx + R * Math.cos(a), y = cy + R * Math.sin(a);
+    doorEls[i].style.transform = "translate(" + x + "px," + y + "px)";
+  });
+}
+/* intro: doors fly out from center, one by one */
+DOORS.forEach((d, i) => {
+  const el = doorEls[i];
+  el.style.left = "0px"; el.style.top = "0px";
+  el.style.transform = "translate(" + (window.innerWidth / 2) + "px," + (window.innerHeight / 2 - 14) + "px) scale(.15)";
+  setTimeout(() => {
+    el.style.transition = "opacity .5s ease, transform .9s cubic-bezier(.22,1,.36,1)";
+    el.style.opacity = "1";
+    placeDoors();
+    if (i === DOORS.length - 1) setTimeout(() => { orbiting = true; doorEls.forEach(e => e.style.transition = ""); }, 950);
+  }, 200 + i * 170);
+});
+let lastT = performance.now();
+function orbitLoop(t) {
+  requestAnimationFrame(orbitLoop);
+  const dt = Math.min(t - lastT, 100); lastT = t;
+  if (orbiting && !paused) {
+    orbitAngle += (Math.PI * 2 / 105000) * dt; /* one revolution ~105 seconds */
+    placeDoors();
+  }
+}
+requestAnimationFrame(orbitLoop);
+window.addEventListener("resize", () => { if (orbiting) placeDoors(); });
+window.addEventListener("pointerdown", () => { paused = true; });
+window.addEventListener("pointerup", () => { setTimeout(() => paused = false, 2500); });
+
+/* ============ PANEL ============ */
+const wrap = document.getElementById("panelWrap");
+function openPanel(i) {
+  const d = DOORS[i];
+  paused = true;
+  document.getElementById("panelGlyph").innerHTML = glyphSVG(d.g, "#ff6a00", d.extra || "");
+  document.getElementById("panelWord").textContent = d.word;
+  document.getElementById("panelMean").textContent = d.mean;
+  const link = document.getElementById("panelLink");
+  if (d.url) { link.style.display = "inline-block"; link.href = d.url; link.textContent = d.cta; }
+  else link.style.display = "none";
+  wrap.classList.add("open");
+}
+function closePanel() { wrap.classList.remove("open"); setTimeout(() => paused = false, 1200); }
+document.getElementById("panelClose").addEventListener("click", closePanel);
+wrap.addEventListener("click", e => { if (e.target === wrap) closePanel(); });
+</script>
+</body>
+</html>
