@@ -16,8 +16,29 @@
     background:radial-gradient(ellipse at center, transparent 46%, rgba(0,0,0,.55) 100%); }
 
   /* ---------- center master ---------- */
-  #center { position:fixed; left:50%; top:50%; transform:translate(-50%,-54%); z-index:3;
+  #center { position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:3;
     text-align:center; pointer-events:none; }
+
+  /* ---------- the language: one long word top, one long word bottom ---------- */
+  .longword { position:fixed; left:0; right:0; z-index:3; text-align:center; pointer-events:none;
+    font-family:"Orbitron",sans-serif; font-weight:600; white-space:nowrap; overflow:hidden;
+    font-size:clamp(10px, 3.4vw, 15px); letter-spacing:.22em; text-indent:.22em;
+    opacity:0; transition:opacity 2.4s ease; }
+  #wordTop { top:calc(16px + env(safe-area-inset-top)); color:rgba(255,106,0,.92);
+    text-shadow:0 0 12px rgba(255,106,0,.5); }
+  #wordBottom { bottom:calc(16px + env(safe-area-inset-bottom)); color:rgba(255,106,0,.55);
+    text-shadow:0 0 10px rgba(255,106,0,.35); }
+  body.entered .longword { opacity:1; }
+
+  /* ---------- splash: one giant symbol, then everything fades forward ---------- */
+  #splash { position:fixed; inset:0; z-index:20; background:#030303;
+    display:flex; align-items:center; justify-content:center;
+    transition:opacity 1s ease; }
+  #splash svg { width:72vmin; height:72vmin;
+    filter:drop-shadow(0 0 34px rgba(255,106,0,.55));
+    animation:splashPulse 1.6s ease-in-out infinite; }
+  @keyframes splashPulse { 0%,100%{ transform:scale(.965); opacity:.88;} 50%{ transform:scale(1); opacity:1;} }
+  #splash.gone { opacity:0; pointer-events:none; }
   #masterRing { width:158px; height:158px; margin:0 auto; border-radius:50%;
     border:1px solid rgba(255,106,0,.85);
     box-shadow:0 0 26px rgba(255,106,0,.45), inset 0 0 26px rgba(255,106,0,.22);
@@ -68,14 +89,15 @@
     box-shadow:0 0 18px rgba(255,106,0,.5); }
   #panelClose { position:absolute; top:8px; right:12px; background:none; border:none; color:rgba(255,106,0,.8);
     font-size:22px; cursor:pointer; font-family:"Space Grotesk",sans-serif; }
-  #hint { position:fixed; left:0; right:0; bottom:calc(16px + env(safe-area-inset-bottom)); z-index:3;
-    text-align:center; font-size:11px; letter-spacing:.34em; text-indent:.34em;
-    color:rgba(232,226,212,.34); font-family:"Orbitron",sans-serif; pointer-events:none; }
+
 </style>
 </head>
 <body>
+<div id="splash"></div>
 <canvas id="rain"></canvas>
 <div id="vignette"></div>
+<div class="longword" id="wordTop">THRAZZVORRAKESHKAEL</div>
+<div class="longword" id="wordBottom">KORVANEOMVEKZUNTHARULTHIX</div>
 
 <div id="center">
   <div id="masterRing"></div>
@@ -96,7 +118,7 @@
   </div>
 </div>
 
-<div id="hint">THRAZZ&nbsp;&middot;&nbsp;VORRAK&nbsp;&middot;&nbsp;ESHKAEL</div>
+
 
 <script>
 "use strict";
@@ -122,9 +144,11 @@ function glyphSVG(i, color, extra) {
   return '<svg viewBox="0 0 64 64" fill="none" stroke="' + color + '" stroke-width="4.4" stroke-linecap="square">' +
     '<path d="' + GLYPHS[i] + '"/>' + (extra || "") + "</svg>";
 }
-document.getElementById("masterRing").innerHTML =
+const MASTER_SVG =
   '<svg viewBox="0 0 64 64" fill="none" stroke="#ff6a00" stroke-width="3.6" stroke-linecap="square">' +
   '<path d="' + MASTER + '"/><circle cx="32" cy="32" r="7.5"/></svg>';
+document.getElementById("masterRing").innerHTML = MASTER_SVG;
+document.getElementById("splash").innerHTML = MASTER_SVG;
 document.getElementById("eggTL").innerHTML = glyphSVG(1, "rgba(255,106,0,.85)");
 document.getElementById("eggBR").innerHTML = glyphSVG(6, "rgba(255,106,0,.85)");
 
@@ -199,28 +223,42 @@ const doorEls = DOORS.map((d, i) => {
   return el;
 });
 let orbitAngle = 0, orbiting = false, paused = false;
-const INTRO_MS = 1500;
+/* the orbit is centered on the master ring itself, and wide enough that a
+   door (66px) always clears the ring (158px) plus its glow */
+const CX = () => window.innerWidth / 2;
+const CY = () => window.innerHeight / 2 - 35;
+function orbitR() {
+  return Math.max(110, Math.min(Math.min(window.innerWidth, window.innerHeight) * 0.40, CY() - 86, window.innerHeight - CY() - 100));
+}
 function placeDoors() {
-  const cx = window.innerWidth / 2, cy = window.innerHeight / 2 - 14;
-  const R = Math.max(118, Math.min(window.innerWidth, window.innerHeight) * 0.36);
+  const R = orbitR();
   DOORS.forEach((d, i) => {
     const a = orbitAngle + (i / DOORS.length) * Math.PI * 2 - Math.PI / 2;
-    const x = cx + R * Math.cos(a), y = cy + R * Math.sin(a);
+    const x = CX() + R * Math.cos(a), y = CY() + R * Math.sin(a);
     doorEls[i].style.transform = "translate(" + x + "px," + y + "px)";
   });
 }
-/* intro: doors fly out from center, one by one */
-DOORS.forEach((d, i) => {
-  const el = doorEls[i];
-  el.style.left = "0px"; el.style.top = "0px";
-  el.style.transform = "translate(" + (window.innerWidth / 2) + "px," + (window.innerHeight / 2 - 14) + "px) scale(.15)";
-  setTimeout(() => {
-    el.style.transition = "opacity .5s ease, transform .9s cubic-bezier(.22,1,.36,1)";
-    el.style.opacity = "1";
-    placeDoors();
-    if (i === DOORS.length - 1) setTimeout(() => { orbiting = true; doorEls.forEach(e => e.style.transition = ""); }, 950);
-  }, 200 + i * 170);
-});
+/* intro: after the splash, doors fade in at the center and fly out to orbit */
+function startIntro() {
+  DOORS.forEach((d, i) => {
+    const el = doorEls[i];
+    el.style.left = "0px"; el.style.top = "0px";
+    el.style.transform = "translate(" + CX() + "px," + CY() + "px) scale(.15)";
+    setTimeout(() => {
+      el.style.transition = "opacity .5s ease, transform .9s cubic-bezier(.22,1,.36,1)";
+      el.style.opacity = "1";
+      placeDoors();
+      if (i === DOORS.length - 1) setTimeout(() => { orbiting = true; doorEls.forEach(e => e.style.transition = ""); }, 950);
+    }, 120 + i * 170);
+  });
+}
+/* splash: the giant symbol holds, fades, and everything fades forward from it */
+setTimeout(() => {
+  document.getElementById("splash").classList.add("gone");
+  document.body.classList.add("entered");
+  setTimeout(startIntro, 350);
+  setTimeout(() => document.getElementById("splash").remove(), 1400);
+}, 1150);
 let lastT = performance.now();
 function orbitLoop(t) {
   requestAnimationFrame(orbitLoop);
