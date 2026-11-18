@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cyndi Williams | Selling Sur, 2031</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b0b0b;--paper:#faf7f0;--cream:#f1e8d6;--gold:#b08d57}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--paper);font-family:'Montserrat',sans-serif;font-weight:300}
+.kick{font-size:10.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold)}
+.hero{min-height:94vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px;position:relative;background:radial-gradient(ellipse at 50% 120%,#241b0e 0%,#0b0b0b 55%)}
+.sig{font-family:'Pinyon Script',cursive;font-size:clamp(44px,9vw,84px);color:var(--cream);opacity:0;animation:fadein 1.6s ease .3s forwards}
+.name{font-family:'Playfair Display',serif;font-size:clamp(30px,6.4vw,58px);letter-spacing:.14em;margin-top:6px;display:flex;flex-wrap:wrap;justify-content:center}
+.name .w{display:inline-flex;overflow:hidden;margin:0 .18em}
+.name .l{display:inline-block;transform:translateY(115%);color:#6d675c;animation:roll 1s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes roll{to{transform:translateY(0);color:#faf7f0}}
+@keyframes fadein{to{opacity:1}}
+.gold-dot{color:var(--gold)}
+.tagline{margin-top:16px;font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(15px,2.6vw,20px);color:#cfc8b8;opacity:0;animation:fadein 1.4s ease 2.2s forwards}
+.hero .kick{opacity:0;animation:fadein 1.2s ease 1.9s forwards}
+.doors{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:34px;opacity:0;animation:fadein 1.2s ease 2.6s forwards}
+.door{border:1px solid #4a4436;color:var(--cream);padding:13px 22px;font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.door.g{background:var(--gold);border-color:var(--gold);color:#141005;font-weight:600}
+.scrollhint{position:absolute;bottom:22px;font-size:10px;letter-spacing:3px;color:#6d675c;text-transform:uppercase}
+.concierge{background:var(--paper);color:#171410;padding:56px 20px}
+.wrap{max-width:860px;margin:0 auto}
+.chat{margin-top:22px;display:flex;flex-direction:column;gap:12px}
+.bubble{max-width:78%;padding:15px 18px;font-size:14.5px;line-height:1.65}
+.bubble.a{background:#fff;border:1px solid #e3dcc9;align-self:flex-start}
+.bubble.u{background:var(--ink);color:var(--paper);align-self:flex-end}
+.bubble .who{display:block;font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.chip{border:1px solid var(--gold);color:#7a5f30;padding:9px 16px;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.note{margin-top:18px;font-size:11.5px;color:#8a8474;line-height:1.7}
+.sunset{padding:56px 20px;background:#101010}
+.stage{position:relative;margin-top:22px;border:1px solid #2c2c2c}
+.stage img{width:100%;height:min(62vh,520px);object-fit:cover;display:block}
+#shade{position:absolute;inset:0;pointer-events:none}
+.slabel{position:absolute;left:16px;bottom:14px;background:rgba(8,8,8,.72);padding:10px 14px}
+.slabel .t{font-family:'Playfair Display',serif;font-size:19px}
+.slabel .s{font-size:10.5px;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+input[type=range]{width:100%;margin-top:16px;accent-color:var(--gold)}
+.times{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:2px;color:#8f887a;text-transform:uppercase;margin-top:6px}
+.book{background:var(--paper);color:#171410;padding:56px 20px 70px}
+.rail{display:flex;gap:16px;overflow-x:auto;padding:22px 2px 10px;scroll-snap-type:x mandatory}
+.card{min-width:262px;max-width:262px;background:#fff;border:1px solid #e3dcc9;scroll-snap-align:start}
+.ph{position:relative}
+.ph img{width:100%;height:172px;object-fit:cover;display:block}
+.badge{position:absolute;top:10px;left:10px;background:var(--gold);color:#141005;font-size:9px;font-weight:600;letter-spacing:1.6px;padding:4px 8px}
+.live{position:absolute;top:10px;right:10px;background:rgba(8,8,8,.75);color:#e9e2cf;font-size:9px;letter-spacing:1.6px;padding:4px 8px;display:flex;align-items:center;gap:5px}
+.live i{width:6px;height:6px;border-radius:50%;background:#7ee787;display:inline-block;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.cb{padding:14px 16px 16px}
+.cn{font-family:'Playfair Display',serif;font-size:17.5px}
+.ca{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#97907e;margin-top:3px}
+.cp{margin-top:10px;font-size:16px;font-weight:600}
+.cp span{font-size:10px;color:#97907e;letter-spacing:1px}
+.cm{font-size:10.5px;color:#97907e;margin-top:3px}
+.contact{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:30px 20px 44px;background:var(--ink)}
+.contact a{color:var(--cream);border:1px solid #4a4436;padding:13px 22px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none}
+.contact a.wa{background:#1f2a1e;border-color:#3c5a3a}
+.fine{text-align:center;font-size:10.5px;color:#5d584d;padding:0 20px 30px;line-height:1.8;background:var(--ink)}
+h2{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(24px,4.4vw,34px);margin-top:8px}
+.sub{font-size:13.5px;color:#7d7767;margin-top:8px;line-height:1.7;max-width:640px}
+.sunset .sub{color:#a49d8c}
+</style></head><body>
+
+<header class="hero">
+  <div class="sig">Cyndi Williams</div>
+  <h1 class="name" id="name">CYNDI WILLIAMS</h1>
+  <div class="kick" style="margin-top:18px">Selling Sur &middot; Cerritos &middot; Pescadero &middot; Todos Santos</div>
+  <div class="tagline">Because your freedom is priceless.</div>
+  <div class="doors"><span class="door g">Buy the coast</span><span class="door">Sell with me</span><span class="door">Just talk</span></div>
+  <div class="scrollhint">Her book, live &darr;</div>
+</header>
+
+<section class="concierge"><div class="wrap">
+  <div class="kick">The concierge</div>
+  <h2>She answers before you ask.</h2>
+  <div class="chat">
+    <div class="bubble a"><span class="who">Cyndi's agent</span>Good afternoon. Two of my listings changed this week, and one new lot hit Cerritos on Monday. Want the short version?</div>
+    <div class="bubble u">What changed?</div>
+    <div class="bubble a"><span class="who">Cyndi's agent</span>Casa Luna Dia listed November 3 at $1,095,000, and Lot 1202 came on at $49,500. Both verified against MLS this morning. Cyndi reviews everything I send, and anything about offers goes straight to her.</div>
+  </div>
+  <div class="chips"><span class="chip">Book a showing</span><span class="chip">Send me the comps</span><span class="chip">Talk to Cyndi</span></div>
+  <div class="note">Demo dialogue. In production this is her live agent, working from her approved answers, escalating the rest to her phone.</div>
+</div></section>
+
+<section class="sunset"><div class="wrap">
+  <div class="kick">Stand there</div>
+  <h2>Cerritos Beachfront Acre, at the hour you'd live it.</h2>
+  <p class="sub">One acre on the sand, $1,950,000, MLS 25-2982. Drag the day across it.</p>
+  <div class="stage"><img src="https://cdn.resize.sparkplatform.com/cab/1280x1024/true/20250616190513266905000000-o.jpg" alt="Cerritos Beachfront Acre"><div id="shade"></div>
+    <div class="slabel"><div class="t" id="clock">12:00 pm</div><div class="s" id="phase">Midday</div></div></div>
+  <input type="range" id="time" min="6" max="19.5" step="0.25" value="12">
+  <div class="times"><span>6 am &middot; surf check</span><span>12 pm</span><span>6:40 pm &middot; sunset</span></div>
+</div></section>
+
+<section class="book"><div class="wrap">
+  <div class="kick">The living book</div>
+  <h2>Thirty four listings. This page never goes stale.</h2>
+  <p class="sub">A few of them, live from her MLS book. Prices, status and photos refresh from the source, not from somebody remembering to update a website.</p>
+  <div class="rail"><article class="card">
+      <div class="ph"><img src="https://cdn.resize.sparkplatform.com/cab/1280x1024/true/20261105192827605905000000-o.jpg" alt="Casa Luna Dia"><span class="badge">NEW THIS MONTH</span><span class="live"><i></i>LIVE</span></div>
+      <div class="cb"><div class="cn">Casa Luna Dia</div><div class="ca">Cerritos</div>
+      <div class="cp">$1,095,000 <span>USD</span></div><div class="cm">MLS 26-4654 &middot; verified today</div></div>
+    </article><article class="card">
+      <div class="ph"><img src="https://cdn.resize.sparkplatform.com/cab/1280x1024/true/20261109233606338043000000-o.jpg" alt="Beach Lot 11"><span class="live"><i></i>LIVE</span></div>
+      <div class="cb"><div class="cn">Beach Lot 11</div><div class="ca">Cerritos</div>
+      <div class="cp">$895,950 <span>USD</span></div><div class="cm">MLS 25-4585 &middot; verified today</div></div>
+    </article><article class="card">
+      <div class="ph"><img src="https://cdn.resize.sparkplatform.com/cab/1280x1024/true/20260811230227017673000000-o.jpg" alt="Tesoro Casa Bajalla 48"><span class="live"><i></i>LIVE</span></div>
+      <div class="cb"><div class="cn">Tesoro Casa Bajalla 48</div><div class="ca">Cabo San Lucas</div>
+      <div class="cp">$850,000 <span>USD</span></div><div class="cm">MLS 26-2723 &middot; verified today</div></div>
+    </article><article class="card">
+      <div class="ph"><img src="https://cdn.resize.sparkplatform.com/cab/1280x1024/true/20251023010012908999000000-o.jpg" alt="Casa Chilicote"><span class="live"><i></i>LIVE</span></div>
+      <div class="cb"><div class="cn">Casa Chilicote</div><div class="ca">Todos Santos</div>
+      <div class="cp">$695,000 <span>USD</span></div><div class="cm">MLS 25-4689 &middot; verified today</div></div>
+    </article><article class="card">
+      <div class="ph"><img src="https://cdn.resize.sparkplatform.com/cab/1280x1024/true/20260317162558160058000000-o.jpg" alt="The Hotelito"><span class="live"><i></i>LIVE</span></div>
+      <div class="cb"><div class="cn">The Hotelito</div><div class="ca">Todos Santos</div>
+      <div class="cp">$495,000 <span>USD</span></div><div class="cm">MLS 26-1352 &middot; verified today</div></div>
+    </article><article class="card">
+      <div class="ph"><img src="https://cdn.resize.sparkplatform.com/cab/1280x1024/true/20261031004139818577000000-o.jpg" alt="Lot 1202"><span class="badge">NEW THIS MONTH</span><span class="live"><i></i>LIVE</span></div>
+      <div class="cb"><div class="cn">Lot 1202</div><div class="ca">Cerritos</div>
+      <div class="cp">$49,500 <span>USD</span></div><div class="cm">MLS 26-4590 &middot; verified today</div></div>
+    </article></div>
+  <div class="note">Real listings, real photos, real MLS numbers, pulled November 18, 2026.</div>
+</div></section>
+
+<div class="contact">
+  <a class="wa" href="https://wa.me/526241588650">WhatsApp Cyndi</a>
+  <a href="tel:+526241588650">+52 624 158 8650</a>
+  <a href="mailto:cyndi@sellingsur.com">cyndi@sellingsur.com</a>
+</div>
+<div class="fine">Concept build, November 2026. One possible 2031, built today.<br>Selling Sur Real Estate Co. &middot; Cerritos, Baja California Sur</div>
+
+<script>
+const el = document.getElementById('name');
+const text = el.textContent; el.textContent = '';
+let d = 0.35;
+text.split(' ').forEach(word => {
+  const w = document.createElement('span'); w.className = 'w';
+  [...word].forEach(ch => {
+    const s = document.createElement('span'); s.className = 'l'; s.textContent = ch;
+    s.style.animationDelay = d.toFixed(2) + 's'; d += 0.075; w.appendChild(s);
+  });
+  el.appendChild(w);
+});
+const dot = document.createElement('span'); dot.className = 'l gold-dot'; dot.textContent = '.';
+dot.style.animationDelay = d.toFixed(2) + 's'; el.appendChild(dot);
+const t = document.getElementById('time'), shade = document.getElementById('shade'),
+      clock = document.getElementById('clock'), phase = document.getElementById('phase');
+function fmt(v) { let h = Math.floor(v), m = Math.round((v - h) * 60); if (m === 60) { h++; m = 0; }
+  const ap = h >= 12 ? 'pm' : 'am'; let hh = h % 12; if (hh === 0) hh = 12;
+  return hh + ':' + String(m).padStart(2, '0') + ' ' + ap; }
+t.addEventListener('input', () => {
+  const v = parseFloat(t.value); clock.textContent = fmt(v);
+  const k = Math.max(0, (v - 14) / 5.5);
+  shade.style.background = 'linear-gradient(180deg, rgba(255,' + Math.round(150 - 60 * k) + ',40,' + (0.42 * k) + ') 0%, rgba(26,8,54,' + (0.5 * k) + ') 100%)';
+  phase.textContent = v < 9 ? 'Morning light' : v < 15 ? 'Midday' : v < 18 ? 'Golden hour' : 'Sunset';
+});
+</script>
+</body></html>
