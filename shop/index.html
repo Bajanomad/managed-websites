@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Textil · Arte y Plata | Handwoven Blankets and Silver Jewelry in Todos Santos</title>
+<meta name="description" content="Casa Textil · Arte y Plata is a family artisan shop in Todos Santos, Baja California Sur. Handwoven Mexican blankets, sterling silver jewelry, and textiles, made by hand since 1987.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF5EA;
+    --paper:#FFFDF8;
+    --ink:#2E211A;
+    --ink-soft:#5C4A3E;
+    --red:#A63A2A;
+    --red-dark:#84301F;
+    --turq:#14707C;
+    --turq-dark:#0E5560;
+    --mustard:#E0A42C;
+    --mustard-soft:#F6E3B4;
+    --line:#EADBC6;
+    --shadow:0 10px 30px rgba(46,33,26,.12);
+    --radius:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,'Times New Roman',serif}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{width:min(1160px,92%);margin:0 auto}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,245,234,.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{
+    width:42px;height:42px;border-radius:12px;flex:none;
+    background:repeating-linear-gradient(45deg,var(--red) 0 7px,var(--mustard) 7px 14px,var(--turq) 14px 21px);
+    box-shadow:inset 0 0 0 2px rgba(255,253,248,.55);
+  }
+  .logo-name{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.18rem;line-height:1.1}
+  .logo-sub{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--turq);font-weight:600}
+  nav.main{display:none;gap:26px}
+  nav.main a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink-soft)}
+  nav.main a:hover{color:var(--red)}
+  .header-actions{display:flex;align-items:center;gap:10px}
+  .cart-btn{
+    position:relative;border:1px solid var(--line);background:var(--paper);
+    border-radius:999px;padding:9px 15px;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;
+    display:flex;align-items:center;gap:7px;
+  }
+  .cart-btn:hover{border-color:var(--mustard)}
+  .cart-count{
+    background:var(--red);color:#fff;border-radius:999px;min-width:22px;height:22px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;padding:0 6px;
+  }
+  @media(min-width:820px){nav.main{display:flex}}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;color:#fff;isolation:isolate;
+    background:#7A3B2E url('https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1800&auto=format&fit=crop') center/cover no-repeat;
+  }
+  .hero::after{content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(100deg,rgba(46,24,16,.82) 0%,rgba(46,24,16,.55) 46%,rgba(46,24,16,.18) 100%);}
+  .hero-in{padding:84px 0 92px;max-width:640px}
+  .hero-tag{
+    display:inline-block;background:var(--mustard);color:#3A2A08;font-weight:700;
+    font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+    padding:6px 12px;border-radius:999px;margin-bottom:18px;
+  }
+  .hero h1{font-size:clamp(2.3rem,6vw,3.9rem);line-height:1.05;font-weight:700;margin-bottom:16px}
+  .hero p{font-size:1.08rem;color:#F7EAD8;max-width:52ch;margin-bottom:28px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;text-decoration:none;cursor:pointer;
+    font:inherit;font-weight:600;font-size:.96rem;border-radius:999px;padding:13px 24px;border:1px solid transparent;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark)}
+  .btn-ghost{background:rgba(255,253,248,.12);color:#fff;border-color:rgba(255,253,248,.55)}
+  .hero-note{margin-top:22px;font-size:.88rem;color:#EBD9BE}
+
+  /* ---------- Stripe ---------- */
+  .stripe{height:10px;background:repeating-linear-gradient(90deg,var(--red) 0 46px,var(--mustard) 46px 92px,var(--turq) 92px 138px,var(--cream) 138px 150px)}
+
+  /* ---------- Sections ---------- */
+  section{padding:64px 0}
+  .kicker{color:var(--turq);font-weight:700;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+  .sec-title{font-size:clamp(1.7rem,3.6vw,2.4rem);font-weight:700;line-height:1.15;margin-bottom:10px}
+  .sec-lead{color:var(--ink-soft);max-width:62ch;margin-bottom:30px}
+
+  /* ---------- Chips ---------- */
+  .chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:30px}
+  .chip{
+    font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;
+    padding:9px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink-soft);
+    transition:all .15s ease;
+  }
+  .chip:hover{border-color:var(--turq);color:var(--turq-dark)}
+  .chip.active{background:var(--turq);border-color:var(--turq);color:#fff}
+
+  /* ---------- Product grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(46,33,26,.05);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .card-img{aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,var(--mustard-soft),#EAC98F)}
+  .card-img img{width:100%;height:100%;object-fit:cover}
+  .card-body{padding:16px 17px 18px;display:flex;flex-direction:column;gap:7px;flex:1}
+  .card-cat{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--turq)}
+  .card h3{font-size:1.13rem;line-height:1.25}
+  .card-desc{font-size:.9rem;color:var(--ink-soft);flex:1}
+  .card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+  .price{font-weight:700;font-size:1.04rem}
+  .price small{display:block;font-weight:500;color:var(--ink-soft);font-size:.8rem}
+  .add-btn{
+    font:inherit;font-weight:600;font-size:.87rem;cursor:pointer;border:none;
+    background:var(--red);color:#fff;border-radius:999px;padding:10px 16px;white-space:nowrap;
+  }
+  .add-btn:hover{background:var(--red-dark)}
+  .add-btn:active{transform:scale(.96)}
+  .badge{
+    position:absolute;top:12px;left:12px;background:var(--mustard);color:#3A2A08;
+    font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:5px 10px;border-radius:999px;
+  }
+  .card-media{position:relative}
+
+  /* ---------- Story ---------- */
+  .story{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .story-grid{display:grid;gap:34px;align-items:center}
+  @media(min-width:860px){.story-grid{grid-template-columns:1.05fr 1fr}}
+  .story-img{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3.4;background:linear-gradient(135deg,#C96F4A,#8C4A32);box-shadow:var(--shadow)}
+  .story-img img{width:100%;height:100%;object-fit:cover}
+  .story p{color:var(--ink-soft);margin-bottom:14px}
+  .story-stats{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px}
+  .stat b{display:block;font-family:'Fraunces',Georgia,serif;font-size:1.6rem;color:var(--red)}
+  .stat span{font-size:.84rem;color:var(--ink-soft)}
+
+  /* ---------- Spotlight ---------- */
+  .spotlight-card{
+    display:grid;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);
+    background:var(--ink);color:#F7EAD8;
+  }
+  @media(min-width:860px){.spotlight-card{grid-template-columns:1fr 1fr}}
+  .spotlight-img{min-height:300px;background:linear-gradient(135deg,#5C3A28,#2E211A)}
+  .spotlight-img img{width:100%;height:100%;object-fit:cover}
+  .spotlight-body{padding:38px 34px;display:flex;flex-direction:column;justify-content:center;gap:13px}
+  .spotlight-body .kicker{color:var(--mustard)}
+  .spotlight-body h3{font-size:1.9rem;line-height:1.15;color:#fff}
+  .spotlight-body p{color:#E4D3B8;font-size:.97rem}
+  .spot-list{list-style:none;display:grid;gap:7px;font-size:.93rem}
+  .spot-list li::before{content:"• ";color:var(--mustard);font-weight:700}
+  .spot-price{display:flex;align-items:center;gap:16px;margin-top:8px;flex-wrap:wrap}
+  .spot-price .price{color:#fff;font-size:1.3rem}
+  .spot-price .price small{color:#CBB892}
+
+  /* ---------- Visit ---------- */
+  .visit-grid{display:grid;gap:24px}
+  @media(min-width:860px){.visit-grid{grid-template-columns:1fr 1.1fr}}
+  .visit-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .visit-card h3{font-size:1.25rem;margin-bottom:14px}
+  .hours{list-style:none;display:grid;gap:8px;font-size:.96rem}
+  .hours li{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding-bottom:7px}
+  .hours li:last-child{border-bottom:none}
+  .visit-img{border-radius:var(--radius);overflow:hidden;min-height:280px;background:linear-gradient(135deg,#D9A05B,#A63A2A)}
+  .visit-img img{width:100%;height:100%;object-fit:cover}
+  .visit-card p{color:var(--ink-soft);font-size:.96rem;margin-bottom:10px}
+
+  /* ---------- Contact ---------- */
+  .contact{background:var(--turq-dark);color:#EAF4F2}
+  .contact .kicker{color:var(--mustard)}
+  .contact .sec-title{color:#fff}
+  .contact p{color:#C9E2DE;max-width:58ch;margin-bottom:26px}
+  .contact-row{display:flex;flex-wrap:wrap;gap:12px}
+  .btn-wa{background:#25D366;color:#0B3D20}
+  .btn-wa:hover{background:#1FB857}
+  .btn-mail{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:#CBBBA6;padding:44px 0 30px;font-size:.92rem}
+  .foot-grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;margin-bottom:26px}
+  .foot-grid h4{font-family:'Fraunces',Georgia,serif;color:#fff;font-size:1.05rem;margin-bottom:9px}
+  .foot-grid p,.foot-grid a{color:#CBBBA6}
+  .foot-grid ul{list-style:none;display:grid;gap:6px}
+  .foot-grid a{text-decoration:none}
+  .foot-grid a:hover{color:var(--mustard)}
+  .network{
+    border-top:1px solid rgba(255,255,255,.14);padding-top:18px;
+    display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;font-size:.85rem;color:#A68F73;
+  }
+  .network strong{color:var(--mustard);font-weight:600}
+
+  /* ---------- Toast ---------- */
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translate(-50%,80px);
+    background:var(--ink);color:#fff;padding:13px 22px;border-radius:999px;
+    font-size:.93rem;font-weight:500;box-shadow:var(--shadow);z-index:100;
+    opacity:0;pointer-events:none;transition:transform .3s ease, opacity .3s ease;
+    display:flex;align-items:center;gap:9px;max-width:90%;
+  }
+  .toast.show{transform:translate(-50%,0);opacity:1}
+  .toast .dot{width:9px;height:9px;border-radius:50%;background:#25D366;flex:none}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="wrap header-in">
+    <a class="logo" href="#top">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span>
+        <span class="logo-name">Casa Textil</span><br>
+        <span class="logo-sub">Arte y Plata · Todos Santos</span>
+      </span>
+    </a>
+    <nav class="main">
+      <a href="#shop">Shop</a>
+      <a href="#story">Our Story</a>
+      <a href="#visit">Visit Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-btn" id="cartBtn" aria-label="Shopping cart">
+        <span aria-hidden="true">🛒</span> Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<div class="hero" id="top">
+  <div class="wrap hero-in">
+    <span class="hero-tag">Handmade in Baja California Sur</span>
+    <h1>Woven by hand. Worn with pride.</h1>
+    <p>Handwoven sarapes, sterling silver jewelry, and textiles from our family workshop in Todos Santos. Every piece is made on a wooden loom or at the jeweler's bench, the slow way, since 1987.</p>
+    <div class="hero-cta">
+      <a class="btn btn-red" href="#shop">Shop the collection</a>
+      <a class="btn btn-ghost" href="#story">Meet the makers</a>
+    </div>
+    <p class="hero-note">Free delivery in Todos Santos · We ship anywhere in Mexico and the US</p>
+  </div>
+</div>
+<div class="stripe" aria-hidden="true"></div>
+
+<!-- ================= SHOP ================= -->
+<section id="shop">
+  <div class="wrap">
+    <p class="kicker">The Shop</p>
+    <h2 class="sec-title">Made by hand, priced fairly</h2>
+    <p class="sec-lead">Small batches, natural fibers, and silver hallmarked in Taxco. When a piece sells out, we weave or forge the next one. Prices in pesos, with US dollars for our visitors.</p>
+
+    <div class="chips" role="group" aria-label="Filter products by category">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="blankets">Blankets</button>
+      <button class="chip" data-filter="jewelry">Silver Jewelry</button>
+      <button class="chip" data-filter="textiles">Textiles</button>
+    </div>
+
+    <div class="grid" id="productGrid">
+
+      <article class="card" data-category="blankets">
+        <div class="card-media">
+          <div class="card-img"><img loading="lazy" alt="Handwoven wool sarape blanket with red and turquoise stripes" src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=900&auto=format&fit=crop"></div>
+          <span class="badge">Bestseller</span>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Blankets</span>
+          <h3>Sarape Clásico</h3>
+          <p class="card-desc">Our signature wool blanket, woven on the family loom with natural dyes. Warm, heavy, and made to last generations.</p>
+          <div class="card-foot">
+            <span class="price">$2,450 MXN<small>about $144 USD</small></span>
+            <button class="add-btn" data-name="Sarape Clásico">Add to cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="blankets">
+        <div class="card-img"><img loading="lazy" alt="Folded striped woven blankets in warm earth tones" src="https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?q=80&w=900&auto=format&fit=crop"></div>
+        <div class="card-body">
+          <span class="card-cat">Blankets</span>
+          <h3>Cobija Sierra</h3>
+          <p class="card-desc">A lighter striped cobija for cool desert nights, woven from a soft wool and cotton blend in earth tones.</p>
+          <div class="card-foot">
+            <span class="price">$1,890 MXN<small>about $111 USD</small></span>
+            <button class="add-btn" data-name="Cobija Sierra">Add to cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="jewelry">
+        <div class="card-img"><img loading="lazy" alt="Sterling silver necklace with a hand stamped pendant" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=900&auto=format&fit=crop"></div>
+        <div class="card-body">
+          <span class="card-cat">Silver Jewelry</span>
+          <h3>Collar Taxco</h3>
+          <p class="card-desc">Sterling silver necklace with a hand stamped pendant, made by silversmiths in Taxco, Guerrero. Hallmarked .925.</p>
+          <div class="card-foot">
+            <span class="price">$1,650 MXN<small>about $97 USD</small></span>
+            <button class="add-btn" data-name="Collar Taxco">Add to cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="jewelry">
+        <div class="card-img"><img loading="lazy" alt="Silver sun earrings with fine filigree detail" src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=900&auto=format&fit=crop"></div>
+        <div class="card-body">
+          <span class="card-cat">Silver Jewelry</span>
+          <h3>Aretes Sol</h3>
+          <p class="card-desc">Sun face earrings in brushed sterling silver, light enough for every day and bright enough for a fiesta.</p>
+          <div class="card-foot">
+            <span class="price">$780 MXN<small>about $46 USD</small></span>
+            <button class="add-btn" data-name="Aretes Sol">Add to cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="textiles">
+        <div class="card-img"><img loading="lazy" alt="Woven table runner with a geometric sun pattern in mustard and red" src="https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?q=80&w=900&auto=format&fit=crop"></div>
+        <div class="card-body">
+          <span class="card-cat">Textiles</span>
+          <h3>Camino Sol</h3>
+          <p class="card-desc">Table runner with a geometric sun pattern, woven in mustard, red, and turquoise. Two meters of instant color.</p>
+          <div class="card-foot">
+            <span class="price">$640 MXN<small>about $38 USD</small></span>
+            <button class="add-btn" data-name="Camino Sol">Add to cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="jewelry">
+        <div class="card-media">
+          <div class="card-img"><img loading="lazy" alt="Sterling silver ring and moon pendant jewelry set" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=900&auto=format&fit=crop"></div>
+          <span class="badge">New</span>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Silver Jewelry</span>
+          <h3>Collar Luna</h3>
+          <p class="card-desc">A crescent moon pendant on a fine silver chain, polished by hand in our Todos Santos workshop.</p>
+          <div class="card-foot">
+            <span class="price">$1,280 MXN<small>about $75 USD</small></span>
+            <button class="add-btn" data-name="Collar Luna">Add to cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="blankets">
+        <div class="card-img"><img loading="lazy" alt="Soft cotton throw blanket draped over a chair in natural light" src="https://images.unsplash.com/photo-1580301762395-83604735c1c5?q=80&w=900&auto=format&fit=crop"></div>
+        <div class="card-body">
+          <span class="card-cat">Blankets</span>
+          <h3>Manta Playa</h3>
+          <p class="card-desc">A breathable cotton throw for beach houses and hammocks, in sand and sea colors with hand knotted fringe.</p>
+          <div class="card-foot">
+            <span class="price">$920 MXN<small>about $54 USD</small></span>
+            <button class="add-btn" data-name="Manta Playa">Add to cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="textiles">
+        <div class="card-img"><img loading="lazy" alt="Handwoven table runner in turquoise and cream stripes" src="https://images.unsplash.com/photo-1620799139652-715e4d5b232d?q=80&w=900&auto=format&fit=crop"></div>
+        <div class="card-body">
+          <span class="card-cat">Textiles</span>
+          <h3>Camino Río</h3>
+          <p class="card-desc">Table runner in turquoise and cream, inspired by the arroyos after the rain. Machine washable, loom woven.</p>
+          <div class="card-foot">
+            <span class="price">$720 MXN<small>about $42 USD</small></span>
+            <button class="add-btn" data-name="Camino Río">Add to cart</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= SPOTLIGHT ================= -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="spotlight-card">
+      <div class="spotlight-img"><img loading="lazy" alt="Close up of the Sarape Clásico blanket showing woven detail and fringe" src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1200&auto=format&fit=crop"></div>
+      <div class="spotlight-body">
+        <p class="kicker">Featured Piece</p>
+        <h3>The Sarape Clásico, three days on the loom</h3>
+        <p>One blanket, one weaver, three full days. The Clásico is the piece our family is known for, woven the same way since our first loom in 1987.</p>
+        <ul class="spot-list">
+          <li>100 percent highland wool, carded and spun by hand</li>
+          <li>Natural dyes: cochineal red, indigo, and marigold</li>
+          <li>Queen size, about 150 by 210 cm, with hand knotted fringe</li>
+          <li>Signed by the weaver on the corner tag</li>
+        </ul>
+        <div class="spot-price">
+          <span class="price">$2,450 MXN<small style="color:#CBB892">about $144 USD</small></span>
+          <button class="add-btn" data-name="Sarape Clásico">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OUR STORY ================= -->
+<section class="story" id="story">
+  <div class="wrap story-grid">
+    <div class="story-img"><img loading="lazy" alt="Artisan weaver working at a wooden loom in the family workshop" src="https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?q=80&w=1200&auto=format&fit=crop"></div>
+    <div>
+      <p class="kicker">Our Story</p>
+      <h2 class="sec-title">A family business since 1987</h2>
+      <p>Casa Textil began with one wooden loom and our grandfather, Don Refugio Aguilar, who walked his blankets from ranch to ranch before opening a single room shop in Todos Santos. Today his grandchildren run the store, and the same loom still stands by the front window.</p>
+      <p>Each blanket starts as raw highland wool. We card it, spin it, and dye it with cochineal, indigo, and marigold, the way it has been done in Mexico for centuries. Then the loom takes over: warp, weft, and three days of steady hands before the fringe is knotted one strand at a time.</p>
+      <p>The silver comes from partner families in Taxco we have worked with for over thirty years, and every textile on our shelves was made by a person whose name we know. That is the whole business, really. People we know, making things that last.</p>
+      <div class="story-stats">
+        <div class="stat"><b>1987</b><span>Family owned since</span></div>
+        <div class="stat"><b>3 days</b><span>To weave one sarape</span></div>
+        <div class="stat"><b>14</b><span>Artisan families supplied</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VISIT US ================= -->
+<section id="visit">
+  <div class="wrap">
+    <p class="kicker">Visit Us</p>
+    <h2 class="sec-title">Find us in the heart of Todos Santos</h2>
+    <p class="sec-lead">We are two blocks from the plaza, under the bougainvillea. Come watch the loom, try on the silver, and take your time. There is always coffee.</p>
+    <div class="visit-grid">
+      <div class="visit-card">
+        <h3>Hours and location</h3>
+        <ul class="hours">
+          <li><span>Tuesday to Friday</span><strong>10:00 am to 6:00 pm</strong></li>
+          <li><span>Saturday</span><strong>10:00 am to 7:00 pm</strong></li>
+          <li><span>Sunday</span><strong>10:00 am to 3:00 pm</strong></li>
+          <li><span>Monday</span><strong>Closed, loom rest day</strong></li>
+        </ul>
+        <p style="margin-top:18px"><strong>Casa Textil · Arte y Plata</strong><br>
+        Calle Benito Juárez 14, Centro<br>
+        Todos Santos, Baja California Sur, 23300</p>
+        <p>Street parking on Juárez. The shop is wheelchair accessible, and well behaved dogs are welcome.</p>
+      </div>
+      <div class="visit-img"><img loading="lazy" alt="Colorful storefronts on a sunny street in Todos Santos" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="kicker">Contact</p>
+    <h2 class="sec-title">Order, ask, or just say hola</h2>
+    <p>The fastest way to reach us is WhatsApp. Send us the name of the piece you like, and we will confirm stock, send more photos, and arrange delivery or shipping. We answer during shop hours, usually within the hour.</p>
+    <div class="contact-row">
+      <a class="btn btn-wa" href="https://wa.me/5216125550147?text=Hola%20Casa%20Textil%2C%20I%20saw%20a%20piece%20on%20your%20website%20and%20would%20like%20to%20order." target="_blank" rel="noopener">Order on WhatsApp</a>
+      <a class="btn btn-mail" href="mailto:hola@casatextil.example.mx">hola@casatextil.example.mx</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Casa Textil · Arte y Plata</h4>
+        <p>Handwoven blankets, sterling silver jewelry,<br>and textiles from Todos Santos,<br>Baja California Sur, Mexico.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">Blankets</a></li>
+          <li><a href="#shop">Silver Jewelry</a></li>
+          <li><a href="#shop">Textiles</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#visit">Hours and Location</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="network">
+      <span>© 2026 Casa Textil · Arte y Plata. Demo website, fictional shop.</span>
+      <span><strong>Part of the Baja Business Network</strong> · Websites for Baja California Sur businesses</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= TOAST ================= -->
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="dot"></span><span id="toastText">Added to cart</span></div>
+
+<script>
+  // ----- Category filter -----
+  var chips = document.querySelectorAll('.chip');
+  var cards = document.querySelectorAll('#productGrid .card');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      var filter = chip.getAttribute('data-filter');
+      cards.forEach(function(card){
+        var show = (filter === 'all') || (card.getAttribute('data-category') === filter);
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  // ----- Cart counter + toast -----
+  var cartCount = 0;
+  var cartCountEl = document.getElementById('cartCount');
+  var toast = document.getElementById('toast');
+  var toastText = document.getElementById('toastText');
+  var toastTimer = null;
+
+  function showToast(name){
+    toastText.textContent = 'Added to cart: ' + name;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+  }
+
+  document.querySelectorAll('.add-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      cartCount++;
+      cartCountEl.textContent = cartCount;
+      showToast(btn.getAttribute('data-name'));
+    });
+  });
+
+  document.getElementById('cartBtn').addEventListener('click', function(){
+    if (cartCount === 0) {
+      toastText.textContent = 'Your cart is empty. Add something beautiful.';
+    } else {
+      toastText.textContent = 'You have ' + cartCount + (cartCount === 1 ? ' item' : ' items') + ' in your cart. Order on WhatsApp to finish.';
+    }
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2600);
+  });
+</script>
+</body>
+</html>

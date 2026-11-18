@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Managed Websites, Baja California Sur: Demo Sites</title>
+<style>
+  :root{
+    --ink:#1d2733; --muted:#5b6b7a; --sand:#f6f1e7; --card:#ffffff;
+    --teal:#0e6b6b; --terra:#c65a2e; --gold:#d9a441; --line:#e5ddcb;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;background:var(--sand);color:var(--ink);line-height:1.55}
+  header{background:var(--ink);color:#fff;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  header .brand{font-size:20px;font-weight:700;letter-spacing:.3px}
+  header .brand span{color:var(--gold)}
+  header nav a{color:#dfe7ee;text-decoration:none;margin-left:18px;font-size:15px}
+  header nav a:hover{color:#fff;text-decoration:underline}
+  .hero{max-width:1080px;margin:0 auto;padding:64px 24px 30px;text-align:center}
+  .hero h1{font-size:42px;line-height:1.15;margin-bottom:16px}
+  .hero h1 em{color:var(--terra);font-style:normal}
+  .hero p{font-size:19px;color:var(--muted);max-width:720px;margin:0 auto}
+  .grid{max-width:1080px;margin:36px auto;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+  .demo{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 6px 24px rgba(29,39,51,.07);display:flex;flex-direction:column}
+  .demo .shot{height:170px;background-size:cover;background-position:center;background-color:#cfd8dc}
+  .demo .body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .demo .tag{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:4px 10px;border-radius:999px;color:#fff}
+  .tag.re{background:var(--teal)} .tag.shop{background:var(--terra)} .tag.fam{background:var(--gold);color:#3a2c07}
+  .demo h2{font-size:22px}
+  .demo p{color:var(--muted);font-size:15.5px;flex:1}
+  .demo a.open{margin-top:6px;background:var(--ink);color:#fff;text-align:center;text-decoration:none;padding:12px;border-radius:10px;font-weight:600}
+  .demo a.open:hover{background:var(--teal)}
+  .how{max-width:1080px;margin:10px auto 50px;padding:0 24px}
+  .how h2{text-align:center;font-size:28px;margin-bottom:20px}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .step .n{font-size:26px;font-weight:800;color:var(--terra)}
+  .step h3{font-size:17px;margin:6px 0}
+  .step p{color:var(--muted);font-size:15px}
+  footer{background:var(--ink);color:#aeb9c4;text-align:center;padding:26px 20px;font-size:14px}
+  footer strong{color:#fff}
+  @media (max-width:560px){.hero h1{font-size:32px}.hero p{font-size:17px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Managed Websites <span>Baja California Sur</span></div>
+  <nav><a href="#demos">Demos</a><a href="#how">How it works</a></nav>
+</header>
+
+<section class="hero">
+  <h1>A real website for your business.<br><em>Built free. You own everything.</em></h1>
+  <p>These are working demo sites, built the way every client site is built: fast, mobile friendly, and yours. Pick a demo and look around.</p>
+</section>
+
+<main class="grid" id="demos">
+  <article class="demo">
+    <div class="shot" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80&auto=format&fit=crop')"></div>
+    <div class="body">
+      <span class="tag re">Real Estate</span>
+      <h2>Baja Coast Realty</h2>
+      <p>An agent site for Todos Santos and El Pescadero: featured listings with photos and prices, working filters, recently sold, testimonials, and one tap WhatsApp contact.</p>
+      <a class="open" href="real-estate/">Open the demo</a>
+    </div>
+  </article>
+
+  <article class="demo">
+    <div class="shot" style="background-image:url('https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?w=1200&q=80&auto=format&fit=crop')"></div>
+    <div class="body">
+      <span class="tag shop">Merchant / Shop</span>
+      <h2>Casa Textil, Arte y Plata</h2>
+      <p>A shop site for a Todos Santos artisan store: blankets, silver jewelry, and textiles with prices, category filters, a working cart, the family story, and store hours.</p>
+      <a class="open" href="shop/">Open the demo</a>
+    </div>
+  </article>
+
+  <article class="demo">
+    <div class="shot" style="background-image:url('https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1200&q=80&auto=format&fit=crop')"></div>
+    <div class="body">
+      <span class="tag fam">Private Family</span>
+      <h2>The Moreno Family, Our Private Place</h2>
+      <p>A password protected social platform for one family only: member profiles, a family feed, photo albums, and a plans board. No Facebook, no ads, no strangers. Demo password: familia2026</p>
+      <a class="open" href="family/">Open the demo</a>
+    </div>
+  </article>
+</main>
+
+<section class="how" id="how">
+  <h2>How it works</h2>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>We build it free</h3><p>A complete site for your business, built at no charge. Listings, products, photos, contact, QR codes for your cards and signs.</p></div>
+    <div class="step"><div class="n">2</div><h3>You own everything</h3><p>Your domain, your accounts, your passwords, handed over with a walkthrough and a backup. Nothing is held hostage, ever.</p></div>
+    <div class="step"><div class="n">3</div><h3>Add an AI agent</h3><p>Optional: an agent that answers your customers from answers you approved, flags your important email, and sends you a daily briefing.</p></div>
+    <div class="step"><div class="n">4</div><h3>Maintenance if you want it</h3><p>Optional monthly care: updates, security, backups. First month free, then half price for two months. Full price only when you see the return.</p></div>
+  </div>
+</section>
+
+<footer>
+  <strong>Managed Websites, Baja California Sur</strong><br>
+  Demo gallery. All businesses, people, listings, and prices shown are fictional samples.
+</footer>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marisol Vega | Baja Coast Realty | Todos Santos and El Pescadero</title>
+<meta name="description" content="Homes, land and condos for sale in El Pescadero, Todos Santos, Cerritos and La Paz. Marisol Vega, Baja Coast Realty.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand:#f6efe4;
+    --sand-dark:#ead9c2;
+    --terra:#c05b2a;
+    --terra-dark:#9c4520;
+    --sea:#0e5566;
+    --sea-deep:#083a47;
+    --ink:#22303a;
+    --muted:#6b7a82;
+    --white:#ffffff;
+    --card-shadow:0 10px 30px rgba(34,48,58,.12);
+    --radius:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--white);line-height:1.55}
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,'Times New Roman',serif}
+  img{display:block;max-width:100%}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid #eee2d0}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.15rem;color:var(--sea-deep)}
+  .brand .mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--terra),#e08a4c);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.05rem;flex:0 0 auto}
+  .brand small{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)}
+  nav.links{display:none;gap:26px;font-weight:500;font-size:.95rem}
+  nav.links a:hover{color:var(--terra)}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-weight:600;border-radius:999px;padding:11px 20px;font-size:.95rem;transition:transform .15s ease,background .15s ease}
+  .btn:active{transform:scale(.97)}
+  .btn-wa{background:#22b358;color:#fff}
+  .btn-wa:hover{background:#1b9a4c}
+  .btn-terra{background:var(--terra);color:#fff}
+  .btn-terra:hover{background:var(--terra-dark)}
+  .btn-ghost{background:#fff;color:var(--sea-deep);border:1px solid #d8c9ae}
+  @media(min-width:860px){nav.links{display:flex}}
+
+  /* Hero */
+  .hero{position:relative;color:#fff;background:var(--sea-deep)}
+  .hero-media{position:absolute;inset:0;background:linear-gradient(160deg,#0e5566,#083a47)}
+  .hero-media img{width:100%;height:100%;object-fit:cover;opacity:.82}
+  .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,58,71,.25),rgba(8,58,71,.78))}
+  .hero-inner{position:relative;padding:74px 0 90px;max-width:720px}
+  .hero .kicker{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);padding:6px 14px;border-radius:999px;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+  .hero h1{font-size:2.5rem;line-height:1.12;font-weight:700;margin-bottom:16px}
+  .hero p{font-size:1.08rem;color:#eaf2f3;max-width:560px;margin-bottom:28px}
+  @media(min-width:860px){.hero h1{font-size:3.4rem}.hero-inner{padding:110px 0 130px}}
+
+  /* Search bar */
+  .searchbar{background:#fff;color:var(--ink);border-radius:var(--radius);box-shadow:var(--card-shadow);padding:14px;display:grid;gap:10px;max-width:860px}
+  .searchbar label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px}
+  .searchbar select,.searchbar input{width:100%;border:1px solid #e2d7c3;border-radius:10px;padding:10px 12px;font-size:.95rem;font-family:inherit;background:#fdfaf4;color:var(--ink)}
+  @media(min-width:760px){.searchbar{grid-template-columns:1.2fr 1fr 1fr auto;align-items:end}}
+  .searchbar .btn{justify-content:center}
+
+  /* Sections */
+  section{padding:64px 0}
+  .section-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:14px;margin-bottom:26px}
+  .section-head h2{font-size:1.9rem;color:var(--sea-deep)}
+  .section-head p{color:var(--muted);max-width:520px}
+  .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-bottom:6px}
+
+  /* Filters */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+  .chip{border:1px solid #d8c9ae;background:#fff;color:var(--sea-deep);padding:9px 18px;border-radius:999px;font-weight:600;font-size:.9rem;cursor:pointer;font-family:inherit;transition:all .15s ease}
+  .chip:hover{border-color:var(--terra);color:var(--terra)}
+  .chip.active{background:var(--sea);border-color:var(--sea);color:#fff}
+
+  /* Listing grid */
+  .grid{display:grid;gap:22px;grid-template-columns:1fr}
+  @media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
+  .card{background:#fff;border:1px solid #f0e5d2;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 16px rgba(34,48,58,.07);transition:transform .2s ease,box-shadow .2s ease;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--card-shadow)}
+  .card-media{position:relative;aspect-ratio:4/3;background:linear-gradient(140deg,var(--sand-dark),#d9b98c)}
+  .card-media img{width:100%;height:100%;object-fit:cover}
+  .tag{position:absolute;left:12px;top:12px;background:var(--sea-deep);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+  .fav{position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,.92);cursor:pointer;font-size:1.05rem;line-height:1;color:#b9a888;display:flex;align-items:center;justify-content:center;transition:all .15s ease}
+  .fav:hover{transform:scale(1.1)}
+  .fav.on{color:#d63a2f}
+  .card-body{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .price{font-family:'Fraunces',Georgia,serif;font-size:1.45rem;font-weight:700;color:var(--terra)}
+  .card-body h3{font-size:1.08rem;color:var(--sea-deep)}
+  .loc{color:var(--muted);font-size:.9rem}
+  .specs{display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid #f0e5d2;padding-top:12px;margin-top:auto;font-size:.88rem;font-weight:500;color:var(--ink)}
+  .specs span{display:inline-flex;align-items:center;gap:5px}
+  .empty{display:none;text-align:center;color:var(--muted);padding:34px 0}
+
+  /* Sold strip */
+  .sold{background:var(--sand)}
+  .sold-row{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+  @media(min-width:860px){.sold-row{grid-template-columns:repeat(4,1fr)}}
+  .sold-item{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(140deg,#cdb693,#b98d5f)}
+  .sold-item img{width:100%;height:100%;object-fit:cover}
+  .sold-item figcaption{position:absolute;inset:auto 0 0 0;background:linear-gradient(0deg,rgba(8,58,71,.88),transparent);color:#fff;padding:26px 14px 12px;font-size:.88rem}
+  .sold-item figcaption strong{display:block;font-size:.95rem}
+  .sold-badge{position:absolute;top:10px;left:10px;background:var(--terra);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.08em;padding:4px 10px;border-radius:999px;text-transform:uppercase}
+
+  /* About */
+  .about{display:grid;gap:34px;align-items:center}
+  @media(min-width:860px){.about{grid-template-columns:400px 1fr}}
+  .portrait{border-radius:20px;overflow:hidden;background:linear-gradient(150deg,var(--sand-dark),#c8a97e);aspect-ratio:4/5;box-shadow:var(--card-shadow)}
+  .portrait img{width:100%;height:100%;object-fit:cover}
+  .about h2{font-size:2rem;color:var(--sea-deep);margin-bottom:14px}
+  .about p{color:#40525c;margin-bottom:14px;max-width:600px}
+  .stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:20px}
+  .stats div strong{display:block;font-family:'Fraunces',Georgia,serif;font-size:1.7rem;color:var(--terra)}
+  .stats div span{font-size:.85rem;color:var(--muted);font-weight:500}
+
+  /* Testimonials */
+  .testis{background:var(--sea-deep);color:#eaf2f3}
+  .testis h2{color:#fff}
+  .testis .section-head p{color:#bcd4d9}
+  .tgrid{display:grid;gap:20px}
+  @media(min-width:860px){.tgrid{grid-template-columns:repeat(3,1fr)}}
+  .tcard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:24px}
+  .stars{color:#f2b04a;letter-spacing:3px;margin-bottom:12px;font-size:.95rem}
+  .tcard p{font-size:.98rem;margin-bottom:16px}
+  .tcard footer{font-weight:600;color:#fff;font-size:.92rem}
+  .tcard footer span{display:block;font-weight:400;color:#bcd4d9;font-size:.85rem}
+
+  /* Contact */
+  .contact-grid{display:grid;gap:26px}
+  @media(min-width:860px){.contact-grid{grid-template-columns:1fr 1fr}}
+  .contact-card{background:var(--sand);border-radius:var(--radius);padding:28px}
+  .contact-card h3{color:var(--sea-deep);margin-bottom:14px;font-size:1.25rem}
+  .contact-line{display:flex;gap:10px;margin-bottom:12px;font-size:1rem;align-items:center}
+  .contact-line b{color:var(--sea-deep)}
+  form{display:grid;gap:12px}
+  form input,form textarea,form select{width:100%;border:1px solid #e2d7c3;border-radius:10px;padding:12px;font-family:inherit;font-size:.95rem;background:#fff}
+  form textarea{min-height:110px;resize:vertical}
+  .fineprint{font-size:.8rem;color:var(--muted)}
+
+  /* Footer */
+  .site-footer{background:#062831;color:#bcd4d9;padding:38px 0 30px;font-size:.92rem}
+  .site-footer .wrap{display:grid;gap:18px}
+  .site-footer strong{color:#fff}
+  .network{border-top:1px solid rgba(255,255,255,.14);padding-top:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+  .network a{color:#f2b04a;font-weight:600}
+  .network a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <span class="mark">MV</span>
+      <span>Marisol Vega<small>Baja Coast Realty</small></span>
+    </a>
+    <nav class="links">
+      <a href="#listings">Listings</a>
+      <a href="#sold">Recently Sold</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-wa" href="https://wa.me/5216120000000?text=Hola%20Marisol%2C%20I%20am%20interested%20in%20a%20property" target="_blank" rel="noopener">WhatsApp Me</a>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="hero-media">
+    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1800&q=80" alt="Modern Baja home with pool at sunset" fetchpriority="high">
+  </div>
+  <div class="wrap hero-inner">
+    <span class="kicker">Todos Santos &middot; El Pescadero &middot; La Paz</span>
+    <h1>Find your place on the Baja coast.</h1>
+    <p>Homes, land and condos between the Sierra de la Laguna and the Pacific. Local guidance, honest pricing, and a guide who lives where you want to live.</p>
+    <form class="searchbar" onsubmit="return false" aria-label="Property search">
+      <div>
+        <label for="q-loc">Location</label>
+        <select id="q-loc">
+          <option>All locations</option>
+          <option>El Pescadero</option>
+          <option>Todos Santos</option>
+          <option>Cerritos</option>
+          <option>La Paz</option>
+        </select>
+      </div>
+      <div>
+        <label for="q-type">Type</label>
+        <select id="q-type">
+          <option>Any type</option>
+          <option>House</option>
+          <option>Land</option>
+          <option>Condo</option>
+        </select>
+      </div>
+      <div>
+        <label for="q-budget">Max budget (USD)</label>
+        <select id="q-budget">
+          <option>No limit</option>
+          <option>150,000</option>
+          <option>300,000</option>
+          <option>500,000</option>
+          <option>1,000,000</option>
+        </select>
+      </div>
+      <button class="btn btn-terra" type="submit" onclick="document.getElementById('listings').scrollIntoView({behavior:'smooth'})">Search Homes</button>
+    </form>
+  </div>
+</div>
+
+<section id="listings">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Featured Listings</div>
+        <h2>On the market now</h2>
+      </div>
+      <p>Updated weekly. Every listing is walked in person by Marisol before it goes up here.</p>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter listings">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="house">Houses</button>
+      <button class="chip" data-filter="land">Land</button>
+      <button class="chip" data-filter="condo">Condos</button>
+    </div>
+
+    <div class="grid" id="grid">
+      <article class="card" data-type="house">
+        <div class="card-media">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80" alt="Casa Palmera, a modern home with pool in El Pescadero">
+          <span class="tag">House</span>
+          <button class="fav" aria-label="Save Casa Palmera to favorites" title="Save to favorites">&#9825;</button>
+        </div>
+        <div class="card-body">
+          <div class="price">$489,000 USD</div>
+          <h3>Casa Palmera</h3>
+          <div class="loc">El Pescadero, Baja California Sur</div>
+          <div class="specs"><span>3 Beds</span><span>2.5 Baths</span><span>212 m&sup2;</span><span>Pool</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-type="land">
+        <div class="card-media">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80" alt="Open land with mountain views near Todos Santos">
+          <span class="tag">Land</span>
+          <button class="fav" aria-label="Save Lote Sierra Vista to favorites" title="Save to favorites">&#9825;</button>
+        </div>
+        <div class="card-body">
+          <div class="price">$89,000 USD</div>
+          <h3>Lote Sierra Vista</h3>
+          <div class="loc">Todos Santos, Baja California Sur</div>
+          <div class="specs"><span>1,850 m&sup2; lot</span><span>Water nearby</span><span>Mountain view</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-type="condo">
+        <div class="card-media">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=80" alt="Condo building at Marina Palmera in La Paz">
+          <span class="tag">Condo</span>
+          <button class="fav" aria-label="Save Marina Palmera condo to favorites" title="Save to favorites">&#9825;</button>
+        </div>
+        <div class="card-body">
+          <div class="price">$265,000 USD</div>
+          <h3>Marina Palmera, Unit 304</h3>
+          <div class="loc">La Paz, Baja California Sur</div>
+          <div class="specs"><span>2 Beds</span><span>2 Baths</span><span>118 m&sup2;</span><span>Marina view</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-type="house">
+        <div class="card-media">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80" alt="Casa Ola with pool at dusk in Cerritos">
+          <span class="tag">House</span>
+          <button class="fav" aria-label="Save Casa Ola to favorites" title="Save to favorites">&#9825;</button>
+        </div>
+        <div class="card-body">
+          <div class="price">$725,000 USD</div>
+          <h3>Casa Ola</h3>
+          <div class="loc">Cerritos, Baja California Sur</div>
+          <div class="specs"><span>4 Beds</span><span>3 Baths</span><span>268 m&sup2;</span><span>Steps to surf</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-type="land">
+        <div class="card-media">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1500076656116-558758c991c1?auto=format&fit=crop&w=900&q=80" alt="Desert land with cactus and open sky in El Pescadero">
+          <span class="tag">Land</span>
+          <button class="fav" aria-label="Save Lote Cardon to favorites" title="Save to favorites">&#9825;</button>
+        </div>
+        <div class="card-body">
+          <div class="price">$64,500 USD</div>
+          <h3>Lote Card&oacute;n</h3>
+          <div class="loc">El Pescadero, Baja California Sur</div>
+          <div class="specs"><span>1,200 m&sup2; lot</span><span>Flat, buildable</span><span>Ocean glimpse</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-type="house">
+        <div class="card-media">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" alt="Casa Almendra, a bright modern home in Todos Santos">
+          <span class="tag">House</span>
+          <button class="fav" aria-label="Save Casa Almendra to favorites" title="Save to favorites">&#9825;</button>
+        </div>
+        <div class="card-body">
+          <div class="price">$398,000 USD</div>
+          <h3>Casa Almendra</h3>
+          <div class="loc">Todos Santos, Baja California Sur</div>
+          <div class="specs"><span>3 Beds</span><span>2 Baths</span><span>176 m&sup2;</span><span>Garden patio</span></div>
+        </div>
+      </article>
+    </div>
+    <p class="empty" id="empty">No listings in this category right now. Ask Marisol on WhatsApp, new properties come in every week.</p>
+  </div>
+</section>
+
+<section class="sold" id="sold">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Recently Sold</div>
+        <h2>Keys handed over</h2>
+      </div>
+      <p>A few of the homes and lots matched with new owners in the last few months.</p>
+    </div>
+    <div class="sold-row">
+      <figure class="sold-item">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=700&q=80" alt="Sold home in El Pescadero">
+        <span class="sold-badge">Sold</span>
+        <figcaption><strong>Casa Brisa</strong>El Pescadero &middot; $342,000</figcaption>
+      </figure>
+      <figure class="sold-item">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=700&q=80" alt="Sold home in Todos Santos">
+        <span class="sold-badge">Sold</span>
+        <figcaption><strong>Villa Atardecer</strong>Todos Santos &middot; $615,000</figcaption>
+      </figure>
+      <figure class="sold-item">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=700&q=80" alt="Sold home in Cerritos">
+        <span class="sold-badge">Sold</span>
+        <figcaption><strong>Casa Miramar</strong>Cerritos &middot; $458,000</figcaption>
+      </figure>
+      <figure class="sold-item">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80" alt="Sold home in La Paz">
+        <span class="sold-badge">Sold</span>
+        <figcaption><strong>Casa Centenario</strong>La Paz &middot; $289,000</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about">
+    <div class="portrait">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Portrait of Marisol Vega, Baja Coast Realty">
+    </div>
+    <div>
+      <div class="eyebrow">About Your Agent</div>
+      <h2>Hola, I am Marisol Vega.</h2>
+      <p>I was born in La Paz and have lived in El Pescadero for the last fourteen years. I know which streets flood in September, which wells run sweet, and which sunsets you will be watching from your terrace before you sign anything.</p>
+      <p>Buying in Baja involves fideicomisos, ejido history and paperwork that looks nothing like a closing back home. My job is to walk you through all of it in plain language, in English or Spanish, and to tell you when a property is not right for you, even when it costs me the sale.</p>
+      <p>No pressure, no rush. Just local knowledge and straight answers.</p>
+      <div class="stats">
+        <div><strong>14</strong><span>Years in the area</span></div>
+        <div><strong>120+</strong><span>Closings completed</span></div>
+        <div><strong>2</strong><span>Languages, one standard of honesty</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testis" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow" style="color:#f2b04a">Client Reviews</div>
+        <h2>What buyers say</h2>
+      </div>
+      <p>Real words from people who now have Baja addresses.</p>
+    </div>
+    <div class="tgrid">
+      <article class="tcard">
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>Marisol talked us out of the first house we loved because the water situation was bad. Then she found us a better one for less. That is who you want on your side.</p>
+        <footer>Dana and Rob K.<span>Bought in El Pescadero, 2025</span></footer>
+      </article>
+      <article class="tcard">
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>We bought from Canada and never felt out of the loop. Video walkthroughs, honest photos, every document explained. The fideicomiso process was painless.</p>
+        <footer>St&eacute;phane L.<span>Bought in Todos Santos, 2026</span></footer>
+      </article>
+      <article class="tcard">
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>She sold our lot in nine days, above asking, and handled the buyer, the notario and the paperwork while we were in Oregon. Full service is not a slogan with her.</p>
+        <footer>Marjorie T.<span>Sold land in Cerritos, 2026</span></footer>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Contact</div>
+        <h2>Ask about a property</h2>
+      </div>
+      <p>Fastest reply is WhatsApp. Email and the form work too, answered within one business day.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Marisol Vega</h3>
+        <div class="contact-line"><b>Phone</b> <span>+52 612 000 0000</span></div>
+        <div class="contact-line"><b>Email</b> <span>marisol@bajacoastrealty.example</span></div>
+        <div class="contact-line"><b>Office</b> <span>Calle del Pescador 12, El Pescadero, BCS</span></div>
+        <div class="contact-line"><b>Hours</b> <span>Mon to Sat, 9 am to 6 pm</span></div>
+        <p style="margin-top:16px"><a class="btn btn-wa" href="https://wa.me/5216120000000?text=Hola%20Marisol%2C%20I%20have%20a%20question%20about%20a%20listing" target="_blank" rel="noopener">Message on WhatsApp</a></p>
+        <p class="fineprint" style="margin-top:14px">Demo website with fictional listings, prices and contact details.</p>
+      </div>
+      <form onsubmit="return handleForm(event)">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <select name="interest">
+          <option>General question</option>
+          <option>Book a viewing</option>
+          <option>Sell my property</option>
+          <option>Land and building advice</option>
+        </select>
+        <textarea name="message" placeholder="Tell me what you are looking for"></textarea>
+        <button class="btn btn-terra" type="submit">Send Message</button>
+        <p class="fineprint" id="form-note">Your details go only to Marisol. No spam, no lists, no pressure.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <strong>Marisol Vega &middot; Baja Coast Realty</strong><br>
+      Serving El Pescadero, Todos Santos, Cerritos and La Paz, Baja California Sur.
+    </div>
+    <div class="network">
+      <span>Part of the <a href="#" onclick="return false">Baja Business Network</a>, local businesses supporting local businesses.</span>
+      <span>&copy; 2026 Baja Coast Realty. Demo site.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Listing filter
+  var chips = document.querySelectorAll('.chip');
+  var cards = document.querySelectorAll('#grid .card');
+  var empty = document.getElementById('empty');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      var f = chip.getAttribute('data-filter');
+      var visible = 0;
+      cards.forEach(function(card){
+        var show = (f === 'all' || card.getAttribute('data-type') === f);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      empty.style.display = visible ? 'none' : 'block';
+    });
+  });
+
+  // Favorite heart toggle
+  document.querySelectorAll('.fav').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var on = btn.classList.toggle('on');
+      btn.innerHTML = on ? '&#9829;' : '&#9825;';
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  });
+
+  // Demo form handler
+  function handleForm(e){
+    e.preventDefault();
+    document.getElementById('form-note').textContent = 'Thank you. This demo form does not send anywhere, but on a live site Marisol would have your message now.';
+    e.target.reset();
+    return false;
+  }
+</script>
+</body>
+</html>
