@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>411</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html, body { height:100%; background:#000; overflow:hidden; }
+  body { font-family:system-ui, sans-serif; }
+  #rain { position:fixed; inset:0; z-index:0; opacity:0; transition:opacity 1.6s ease; }
+  body.raining #rain { opacity:1; }
+  #vignette { position:fixed; inset:0; z-index:1; pointer-events:none;
+    background:radial-gradient(ellipse at center, transparent 46%, rgba(0,0,0,.55) 100%); }
+
+  #center { position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:3;
+    pointer-events:none; opacity:0; }
+  #masterRing { width:158px; height:158px; border-radius:50%;
+    border:1px solid rgba(255,106,0,.85);
+    box-shadow:0 0 26px rgba(255,106,0,.45), inset 0 0 26px rgba(255,106,0,.22);
+    display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.5); }
+  #masterRing svg { width:104px; height:104px; }
+  body.alive #masterRing { animation:breathe 5.2s ease-in-out infinite; }
+  @keyframes breathe { 0%,100%{ box-shadow:0 0 18px rgba(255,106,0,.32), inset 0 0 18px rgba(255,106,0,.16);} 50%{ box-shadow:0 0 40px rgba(255,106,0,.6), inset 0 0 34px rgba(255,106,0,.3);} }
+  body.surge #masterRing { box-shadow:0 0 90px rgba(255,170,60,.95), inset 0 0 60px rgba(255,140,0,.55); }
+
+  .door { position:fixed; z-index:4; width:66px; height:66px; margin:-33px 0 0 -33px;
+    border-radius:50%; border:1px solid rgba(255,106,0,.75); cursor:pointer;
+    background:rgba(0,0,0,.6);
+    box-shadow:0 0 16px rgba(255,106,0,.35), inset 0 0 14px rgba(255,106,0,.14);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; will-change:transform,opacity; }
+  .door svg { width:40px; height:40px; pointer-events:none; }
+  .door:active { box-shadow:0 0 30px rgba(255,106,0,.8), inset 0 0 20px rgba(255,106,0,.3); }
+
+  body.flash #center, body.flash .door { filter:brightness(2.4) drop-shadow(0 0 22px rgba(255,150,40,.95)); }
+  #center, .door { transition:filter .09s linear; }
+</style>
+</head>
+<body>
+<canvas id="rain"></canvas>
+<div id="vignette"></div>
+<div id="center"><div id="masterRing"></div></div>
+
+<script>
+"use strict";
+/* ================= THE TWO ALPHABETS =================
+   A = constellations. B = sacred geometry / Fibonacci.
+   David picks. His hand drawn set replaces both when it lands. */
+const ORANGE = "#ff6a00", GREEN = "#39ff14";
+function P(d, w) { return '<path d="' + d + '" stroke-width="' + (w || 3.6) + '"/>'; }
+function C(x, y, r, fill) { return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '"' + (fill ? ' fill="' + ORANGE + '" stroke="none"' : '') + '/>'; }
+function DOTS(pts) { return pts.map(p => C(p[0], p[1], p[2] || 3.2, true)).join(""); }
+
+const SETS = {
+A: {
+  master: P("M14 46 L25 33 L39 37 L49 19") + DOTS([[14,46,3.4],[25,33,2.8],[39,37,2.8],[49,19,4.4]]) + P("M49 11 V27 M41 19 H57", 2.6),
+  glyphs: [
+    P("M14 46 L25 33 L39 37 L49 19") + DOTS([[14,46],[25,33],[39,37],[49,19,4]]),
+    C(32,32,15) + DOTS([[32,32,3.6],[32,17,2.6],[47,40,2.4]]),
+    P("M8 22 L20 37 L32 24 L44 38 L56 23") + DOTS([[8,22],[20,37],[32,24],[44,38],[56,23]]),
+    P("M12 48 L32 14 L52 48") + DOTS([[12,48],[32,14],[52,48],[32,36,2.6]]),
+    P("M12 50 A24 24 0 0 1 52 50") + DOTS([[12,50],[20,33],[32,27],[44,33],[52,50]]),
+    P("M10 15 L22 21 L34 25 L44 22 L52 31 L50 44 L39 41") + DOTS([[10,15],[22,21],[34,25],[44,22],[52,31],[50,44],[39,41]]),
+    P("M32 8 V56 M15 24 H49", 2.6) + DOTS([[32,8],[32,24,3.8],[32,40],[32,56],[15,24],[49,24]]),
+    P("M10 40 A26 26 0 0 1 54 40") + DOTS([[10,40],[17,25],[28,16],[39,16],[48,24],[54,40]]),
+    P("M10 20 L26 30 M38 34 L54 44") + DOTS([[10,20,3.4],[26,30,2.6],[38,34,2.6],[54,44,3.4],[32,32,2.2]]),
+    P("M32 32 m-3 0 a3 3 0 1 1 6 0 a7 7 0 1 1 -7 -7 a12 12 0 1 1 12 12 a18 18 0 1 1 -18 -18", 2.8) + DOTS([[46,18,2.6],[18,48,2.6]])
+  ]
+},
+B: {
+  master: C(32,32,9) + C(32,23,9) + C(39.8,27.5,9) + C(39.8,36.5,9) + C(32,41,9) + C(24.2,36.5,9) + C(24.2,27.5,9) + '<circle cx="32" cy="32" r="19.5" stroke-width="2.4"/>',
+  glyphs: [
+    P("M32 32 m0 -3 a3 3 0 0 1 3 3 a5 5 0 0 1 -5 5 a8 8 0 0 1 -8 -8 a13 13 0 0 1 13 -13 a21 21 0 0 1 21 21", 3.2),
+    C(32,32,8) + C(32,24,8) + C(38.9,28,8) + C(38.9,36,8) + C(32,40,8) + C(25.1,36,8) + C(25.1,28,8),
+    P("M20 20 H44 V44 H20 Z M14 14 H50 V50 H14 Z M26 26 H38 V38 H26 Z", 2.8),
+    P("M32 6 L56 50 H8 Z") + C(32,32,10),
+    P("M14 14 H50 V50 H14 Z") + P("M32 14 L50 32 L32 50 L14 32 Z", 3),
+    C(21,32,13) + C(43,32,13) + DOTS([[32,32,3]]),
+    P("M32 8 A24 24 0 1 1 8 32 A12 12 0 1 0 32 20 A6 6 0 1 1 32 32", 3),
+    C(32,32,22) + C(32,32,14) + C(32,32,6),
+    P("M10 54 V10 H54 M10 38 H38 V10 M10 47 H47 V24", 2.8),
+    P("M32 6 L58 32 L32 58 L6 32 Z M32 20 L44 32 L32 44 L20 32 Z", 3)
+  ]
+}
+};
+const SET = SETS[(new URLSearchParams(location.search).get("set") === "geo") ? "B" : "A"];
+function glyphSVG(markup, color, w) {
+  return '<svg viewBox="0 0 64 64" fill="none" stroke="' + color + '" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">' + markup + "</svg>";
+}
+document.getElementById("masterRing").innerHTML = glyphSVG(SET.master, ORANGE);
+
+/* ================= DOORS ================= */
+const OLD = "https://411matrix.vercel.app";
+const DOOR_URLS = [
+  "https://calendar.google.com", OLD, OLD, OLD, OLD,
+  "https://www.facebook.com/profile.php?id=61595657647422", OLD, OLD
+];
+const doorEls = DOOR_URLS.map((url, i) => {
+  const el = document.createElement("div");
+  el.className = "door";
+  el.innerHTML = glyphSVG(SET.glyphs[i % SET.glyphs.length], ORANGE);
+  el.setAttribute("role", "button");
+  el.addEventListener("click", () => { if (introDone) location.href = url; });
+  document.body.appendChild(el);
+  return el;
+});
+
+/* ================= GEOMETRY ================= */
+const CX = () => window.innerWidth / 2;
+const CY = () => window.innerHeight / 2;
+function orbitR() {
+  return Math.max(118, Math.min(Math.min(window.innerWidth, window.innerHeight) * 0.40, CY() - 92, window.innerHeight - CY() - 92));
+}
+let orbitAngle = 0;
+function placeDoors() {
+  const R = orbitR();
+  doorEls.forEach((el, i) => {
+    const a = orbitAngle + (i / doorEls.length) * Math.PI * 2 - Math.PI / 2;
+    el.style.transform = "translate(" + (CX() + R * Math.cos(a)) + "px," + (CY() + R * Math.sin(a)) + "px)";
+  });
+}
+doorEls.forEach(el => { el.style.left = "0px"; el.style.top = "0px"; el.style.transform = "translate(" + CX() + "px," + CY() + "px)"; });
+window.addEventListener("resize", () => { if (introDone) placeDoors(); });
+
+/* ================= RAIN (green, his glyphs, starts after the symbol) ================= */
+const canvas = document.getElementById("rain"), ctx = canvas.getContext("2d");
+let W, H, cols = [], sprites = [], spritesReady = false;
+const CELL = 34;
+function buildSprites() {
+  let loaded = 0;
+  sprites = SET.glyphs.map(markup => {
+    const greenMarkup = markup.split(ORANGE).join(GREEN); /* rain is green, all of it */
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="' + GREEN + '" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">' + greenMarkup + "</svg>";
+    const img = new Image();
+    img.onload = () => { if (++loaded === SET.glyphs.length) spritesReady = true; };
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+    return img;
+  });
+}
+function sizeRain() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  W = window.innerWidth; H = window.innerHeight;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W + "px"; canvas.style.height = H + "px";
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const n = Math.ceil(W / CELL);
+  cols = [];
+  for (let i = 0; i < n; i++) cols.push({ x: i * CELL + 5, y: Math.random() * -H, speed: 0.35 + Math.random() * 0.75 });
+  ctx.fillStyle = "#000"; ctx.fillRect(0, 0, W, H);
+}
+buildSprites(); sizeRain();
+window.addEventListener("resize", sizeRain);
+let raining = false, lastRain = 0;
+function rainLoop(t) {
+  requestAnimationFrame(rainLoop);
+  if (!raining || !spritesReady || t - lastRain < 50) return;
+  lastRain = t;
+  ctx.fillStyle = "rgba(0,0,0,0.075)"; ctx.fillRect(0, 0, W, H);
+  for (const col of cols) {
+    col.y += col.speed * CELL * 0.42;
+    if (col.y > H + CELL) { col.y = -CELL * (2 + Math.random() * 8); col.speed = 0.35 + Math.random() * 0.75; }
+    const gi = (Math.random() * sprites.length) | 0;
+    ctx.globalAlpha = 0.34;
+    ctx.drawImage(sprites[gi], col.x, col.y, 25, 25);
+    if (Math.random() < 0.5) { ctx.globalAlpha = 0.15; ctx.drawImage(sprites[(Math.random() * sprites.length) | 0], col.x, col.y - CELL, 25, 25); }
+    ctx.globalAlpha = 1;
+  }
+}
+requestAnimationFrame(rainLoop);
+
+/* ================= THE CEREMONY =================
+   0.0s  pure black. Nothing. You think it is down.
+   0.3-2.9s  the symbol and its circle fade in, slow at first, faster as it comes.
+   2.9s  it arrives: one electric surge.
+   3.1s  the green rain starts to fall.
+   4.1s  doors fade in one by one, clockwise from 12 o'clock, each one slow.
+   ~7.8s everything flashes twice. Then it is alive: slow orbit, rain. */
+let introDone = false, orbiting = false, paused = false;
+const centerEl = document.getElementById("center");
+const T0 = performance.now();
+function symbolFade(t) {
+  const T = 2600, k = Math.min((t - T0 - 300) / T, 1);
+  if (k <= 0) { requestAnimationFrame(symbolFade); return; }
+  centerEl.style.opacity = (k * k).toFixed(3);           /* accelerating fade */
+  const s = 0.965 + 0.035 * k;
+  centerEl.style.transform = "translate(-50%,-50%) scale(" + s.toFixed(4) + ")";
+  if (k < 1) requestAnimationFrame(symbolFade); else arrive();
+}
+function arrive() {
+  document.body.classList.add("surge");
+  setTimeout(() => document.body.classList.remove("surge"), 240);
+  setTimeout(startRain, 200);
+  setTimeout(doorCeremony, 1200);
+}
+function startRain() { raining = true; document.body.classList.add("raining"); }
+function doorCeremony() {
+  doorEls.forEach((el, i) => {
+    setTimeout(() => {
+      placeDoors();
+      el.style.transition = "opacity 1.5s ease";
+      el.style.opacity = "1";
+      if (i === doorEls.length - 1) setTimeout(theFlash, 1650);
+    }, i * 380);
+  });
+}
+function theFlash() {
+  const seq = [[160, 1], [200, 0], [160, 1], [240, 0]];
+  let t = 0;
+  seq.forEach(([d, on]) => { setTimeout(() => document.body.classList.toggle("flash", !!on), t); t += d; });
+  setTimeout(() => { introDone = true; orbiting = true; document.body.classList.add("alive"); }, t + 60);
+}
+requestAnimationFrame(symbolFade);
+
+/* skip: a tap after the first beat jumps to the living state */
+window.addEventListener("pointerdown", () => {
+  if (introDone) { paused = true; return; }
+  if (performance.now() - T0 < 600) return;
+  centerEl.style.opacity = "1"; centerEl.style.transform = "translate(-50%,-50%) scale(1)";
+  startRain();
+  doorEls.forEach(el => { el.style.transition = "none"; el.style.opacity = "1"; });
+  placeDoors();
+  document.body.classList.remove("flash", "surge");
+  introDone = true; orbiting = true; document.body.classList.add("alive");
+});
+window.addEventListener("pointerup", () => setTimeout(() => paused = false, 2500));
+
+/* ================= ORBIT ================= */
+let lastT = performance.now();
+function orbitLoop(t) {
+  requestAnimationFrame(orbitLoop);
+  const dt = Math.min(t - lastT, 100); lastT = t;
+  if (orbiting && !paused) { orbitAngle += (Math.PI * 2 / 105000) * dt; placeDoors(); }
+}
+requestAnimationFrame(orbitLoop);
+</script>
+</body>
+</html>
